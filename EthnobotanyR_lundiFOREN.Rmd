@@ -30,7 +30,7 @@ output: revealjs::revealjs_presentation
 
 - data structure to import into the RStudio software 
 
-- Use basic functions of a package
+- Use basic functions of the package
 
 ## What is ethnobotanyR
 The **ethnobotanyR** package can be used to calculate common **quantitative ethnobotany** indices to assess the cultural significance of plant species based on informant consensus. 
