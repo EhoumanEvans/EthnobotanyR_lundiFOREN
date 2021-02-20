@@ -606,10 +606,10 @@ ggplot2::ggplot(ethno_sp_a_bayes_melt, aes(x = value,
 
 # Closing
 ## Summary
-1. Install Rand Rstudio
-2. Importing the dataset
-3. Run functions
-4. Use Ethnobotary R
-5. Exploratory Data Analysis
+1. Install R and Rstudio (for r userbeginners)
+2. Use Ethnobotary R
+3. Import the dataset for analysis
+4. Exploratory Data Analysis
+5. Run functions
 
-## Thank you for your coming!
+## Thank you for coming!
