@@ -20,9 +20,15 @@ output: revealjs::revealjs_presentation
 
 
 # Welcome
-
+Prenstation available at [My rpubs drive](https://rpubs.com/EhoumanEvans/728196) 
 
 # The workshop topic and Goals
+## Required packages
+- ggplot2 (visualisation) ; 
+- tidyverse (managing dataframe, data wrangling)
+- readxl (importing .xls files);
+- ethnobotantyr (computing ethnobotany index).
+
 ## What is R and RStudio
 - Know the GUI of R and Rstudio softwares (for r user beginners) 
 
