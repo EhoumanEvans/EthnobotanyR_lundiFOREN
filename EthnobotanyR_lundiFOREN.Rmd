@@ -24,13 +24,11 @@ output: revealjs::revealjs_presentation
 
 # The workshop topic and Goals
 ## What is R and RStudio
-- Know the GUI of R and Rstudio softwares
-
-- Create a project R 
+- Know the GUI of R and Rstudio softwares (for r user beginners) 
 
 - Install and load packages
 
-- Import data into the RStudio software
+- data structure to import into the RStudio software 
 
 - Use basic functions of a package
 
