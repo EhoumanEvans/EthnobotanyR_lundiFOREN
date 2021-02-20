@@ -1,0 +1,617 @@
+---
+title: "Quantitative ethnobotany analysis with ethnobotanyR"
+date: 2021.1.25
+author: <br>Ehouman Evans <br> <br> 
+transition: rotate
+output: revealjs::revealjs_presentation
+---
+
+<style type="text/css">
+  .reveal p {
+    text-align: left;
+  }
+  .reveal ul {
+    display: block;
+  }
+  .reveal ol {
+    display: block;
+  }  
+</style>
+
+
+# Welcome
+
+
+# The workshop topic and Goals
+## What is R and RStudio
+- Know the GUI of R and Rstudio softwares
+
+- Create a project R 
+
+- Install and load packages
+
+- Import data into the RStudio software
+
+- Use basic functions of a package
+
+## What is ethnobotanyR
+The **ethnobotanyR** package can be used to calculate common **quantitative ethnobotany** indices to assess the cultural significance of plant species based on informant consensus. 
+
+## Why this training
+The goal is to provide an easy-to-use platform for ethnobotanists to calculate quantitative ethnobotany indices ;
+
+To be More productive ;
+
+To be opened to current research methodologies and skills.
+
+## The author
+<img src="Cory.png"  >
+
+## References (1)
+The package closely follows two papers, one by Tardio and Pardo-de-Santayana (2008) and another by Whitney et al. (2018). 
+
+
+**Users are highly encouraged** to read the theory papers of Albuquerque et al. (2019) and Gaoue et al. (2017). 
+
+## References (2)
+Tsioutsiou E E, Giordani P, Hanlidou E, Biagi M, De Feo V, and Cornara L (2019), Ethnobotanical Study of Medicinal Plants Used in Central Macedonia, Greece. Evidence-Based Complementary and Alternative Medicine. 2019: 1-22.
+
+
+## Table of Content
+
+The Package
+
+Data format
+
+Package functions
+
+Visualize ethnobotanyR results
+
+Demo
+
+# Ethnobotany
+## Definition
+_The field of study that analyzes the results of indigenous manipulations of plants material together with the cultural context in which the plants are used, is called Ethnobotany_ (Balick et Cox, 1996)
+
+## Why carry out an ethnobotay study
+- Cultural knowledge ;
+
+- Anthropology ;
+
+
+- Archeology ;
+
+- Economic ;
+
+- New Drug discovery ;
+
+_ ...
+
+
+## Why carry out an ethnobotay study
+
+What are the conservation and livelihood implications of plant use?
+ 
+ *Biodiversity conservation* (Gaoue et al., 2017)
+ 
+
+# Obtaining data
+## Open  and  semi-structured  interviews Vs Structure
+- walk-in-the-woods ;
+
+- Show and tell
+
+
+## Use categories
+“construction”,  “food”, “medicine”,  “technology”,  “firewood”  and  “other”.
+
+## Use categories for medicinal plants 1/4
+- gastrointestinal disorders (GI):
+(diarrhea, nausea, vomiting, stomach ache, gastric problems, loss of appetite, colic, flatulence, dysentery); 
+
+- dermatological diseases (DO):
+(skin burns, skin spots, skin rashes, boils, cut, wounds, hair problems, ectoparasites); 
+
+- urogenital and gynecological problems (UGP):
+(sexual problems including frigidity, lack of libido, infertility, gonorrhea, diuretic, aphrodisiac, menstrual disorders); 
+
+## Use categories for medicinal plants 2/4
+- skeletomuscular disorders (SD); 
+
+- internal medical diseases (IM): 
+(diabetes, cancers, and tumors, hypertension, piles/hemorrhoids); 
+
+- respiratory-nose, ear, oral/dental, throat problems (RT):
+(asthma, nose bleeding, sinusitis, earache, throat shore, dental problems); 
+
+- and others (OT) (motion sickness). (Jadid et al., 2020)
+
+_Cultural Diseases and Disorders, and Ritual/Magical Uses_ (Gruca et al., 2014)
+
+
+## Use categories for medicinal plants 3/4
+13 disease categories
+
+- Gastrointestinal diseases ;
+
+- Malaria ;
+
+- General pathology symptoms (Headache, tiredness, cold, insomnia, fatigue) ;
+
+- Dermatosis (Skin disorders, wound healing) ;
+
+- Respiratory diseases (Respiratory disorder, sinusitis, cough) ;
+
+- Hemorrhoids ;
+
+
+
+## Use categories for medicinal plants 4/4
+
+- Internal organ diseases (Liver diseases, kidney diseases) ;
+
+- Cardiovascular diseass (Heart aches, control of heartbeat, hypertension) ;
+
+- Infections (excl. malaria) (Dental infections, eye infections) ;
+
+- Child diseases (Umbilical cord treatment, children fears, growth retardation) ;
+
+- Urogenital diseases (Syphilis,prostate, sexual impotence) ;
+
+- Arthritis (Rheumatism and gout)
+
+- Blood diseases (Sickle cell disease, anemia)
+(Ouédraogo1 et al, 2020)
+
+## Quantitative ethnobotany
+Quantitative ethnobotany may be defined as "the application of quantitative techniques to the direct analysis of contemporary plant use data".
+
+Data collection, processing and interpretation. 
+
+Such quantitative approaches aim to describe the variables quantitatively and analyse
+the observed patterns in the study (Höft et al. 1999).
+
+
+# The Package
+## Installation of the Package
+
+Script Mode : 
+
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+install.packages("ethnobotanyR")
+
+</div>
+
+
+
+## Documentation & Vignette of the Package
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+https://cran.r-project.org/web/packages/ethnobotanyR/ethnobotanyR.pdf
+
+</div>
+      
+ Or  
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
+
+https://cran.r-project.org/web/packages/ethnobotanyR/vignettes/
+ethnobotanyr_vignette.html
+
+</div>
+
+# Data format
+## Charge the package and the data set
+
+```{r eval=FALSE}
+library(ethnobotanyR)
+# View(ethnobotany_cat)
+library(readxl)
+ethnobotany_cat <- read_excel("/Volumes/USER-1/Projets/rworkshop/data/ethnobotany_cat.xlsx")
+View(ethnobotany_cat)
+```
+
+## Definition
+- This is an ethnobotany data set including one column of knowledge holder identifiers informant and one of  species names *sp_name*. 
+
+- The rest of the columns are the identified **ethnobotany use categories** (Tsioutsiou et al., 2019). 
+
+- The data in the use categories is populated with counts of uses per person (should be 0 or 1 values).
+
+```{r eval=FALSE}
+dim(ethnobotany_cat)
+unique(ethnobotany_cat$sp_name)
+length(unique(ethnobotany_cat$informant))
+```
+
+
+## Comment the dataset: EDA
+<center> Use nine (9) basic functions to comment the data set... 5 min!</center>
+
+# Package functions
+## Use Report (UR) per species (URs)
+
+ - Definiton :
+ 
+`URs()` calculates the total uses for the species by all informants (from $i_1$ to $^iN$) within each use-category for that species $(s)$. 
+
+It is a count of the number of informants who mention each use-category $NC$ for the species and the sum of all uses in each **use-category** (from $u_1$ to $^uNC$) (Prance et al. 1987).
+
+## Use Report (UR) per species (URs)
+
+ - Formular : 
+ 
+\begin{equation}
+UR_{s} = \sum_{u=u_1}^{^uNC} \sum_{i=i_1}^{^iN} UR_{ui}
+\end{equation}
+
+ - Function : 
+ 
+```{r eval=FALSE}
+ethnobotanyR::URs(ethnobotany_cat)
+```
+
+
+## Use Report (URsum) per species
+
+The `URsum()` function calculates the sum of all ethnobotany use reports (UR) for all species in the data set.
+
+ - Function : 
+ 
+```{r eval=FALSE}
+ethnobotanyR::URsum(ethnobotany_cat)
+```
+
+
+
+## Cultural Importance (CI) index
+
+- **Definition**
+
+The `CIs()` function calculates the cultural importance index (CI) for each species in the data set. 
+
+The `CIs()` is essentially `URs()` divided by the number of informants to account for the diversity of uses for the species.
+
+## Cultural Importance (CI) index
+- **Formular**
+
+\begin{equation}
+CI_{s} = \sum_{u=u_1}^{^uNC} \sum_{i=i_1}^{^iN} UR_{ui/N}.
+\end{equation}
+
+- **Function**
+
+```{r eval=FALSE}
+ethnobotanyR::CIs(ethnobotany_cat)
+```
+
+
+
+## Frequency of Citation (FC) per species
+- **Definition**
+
+The `FCs()` function calculates the frequency of citation (FC) for each species in the data set. 
+
+The `FCs()` is the sum of informants that cite a use for the species.
+
+## Frequency of Citation (FC) per species
+- **Formular**
+
+\begin{equation}
+FC_s = \sum_{i=i_1}^{^iN} UR_i
+\end{equation}
+
+- **Function**
+
+```{r eval=FALSE}
+ethnobotanyR::FCs(ethnobotany_cat)
+```
+
+## Number of Uses (NU) per species
+- **Definition**
+
+The `NUs()` function calculates the number of uses (NU) for each species in the data set.$NC$ are the number of use categories. 
+
+The `NUs()` is the sum of all categories for which a species is considered useful (Prance et al. 1987).
+
+- **Formular**
+
+\begin{equation}
+NU_s = \sum_{u=u_1}^{^uNC}
+\end{equation}
+
+## Number of Uses (NU) per species
+- **Function**
+
+```{r eval=FALSE}
+ethnobotanyR::NUs(ethnobotany_cat)
+```
+
+
+## Relative Frequency of Citation (RFC) index
+
+- **Definition**
+
+The `RFCs()` function calculates the relative frequency of citation (RFC) for each species in the data set.
+
+$FC_s$ is the frequency of citation for each species $s$, $UR_i$ are the use reports for all informants $i$ and $N$ is the total number of informants interviewed in the survey.
+
+
+
+## Relative Frequency of Citation (RFC) index
+- **Formular**
+
+\begin{equation}
+RFC_s = \frac{FC_s}{N} = \frac{\sum_{i=i_1}^{^iN} UR_i}{N}
+\end{equation}
+
+- **Function**
+
+```{r eval=FALSE}
+ethnobotanyR::RFCs(ethnobotany_cat)
+```
+
+## Relative Importance (RI) index
+
+- **Definition**
+
+The `RIs()` function calculates the relative importance index (RI) for each species in the data set. 
+
+$RFC_{s(max)}$ is the relative frequency of citation for the species $s$ over the maximum, $RNU_{s(max)}$ is the relative number of uses for $s$ over the maximum (see Tardio and Pardo-de-Santayana 2008).
+
+- **Formular**
+
+\begin{equation}
+RI_s = \frac{RFC_{s(max)} + RNU_{s(max)}}{2} 
+\end{equation}
+
+## Relative Importance (RI) index
+- **Function**
+
+```{r eval=FALSE}
+ethnobotanyR::RIs(ethnobotany_cat)
+```
+
+
+## Use Value (UV) index
+- **Definition**
+
+The `UVs()` function calculates the use value (UV) index for each species in the data set.
+
+$U_i$ is the number of different uses mentioned by each informant $i$ and $N$ is the total number of informants interviewed in the survey (Albuquerque et al. 2006).
+
+- **Formular**
+
+\begin{equation}
+UV_{s} = \sum U_i/N
+\end{equation}
+
+## Use Value (UV) index
+- **Function**
+
+```{r eval=FALSE}
+ethnobotanyR::UVs(ethnobotany_cat)
+```
+
+
+
+## Fidelity Level (FL) per species
+- **Definition**
+
+The `FLs()` function calculates the fidelity level (FL) per species in the study. 
+
+It is a way of calculating the percentage of informants who use a plant for the same purpose as compared to all uses of all plants.
+
+
+- **Formular**
+\begin{equation}
+FL_{s} = \frac {N_{s}}{UR_{s}}
+\end{equation}
+
+where $N_s$ is the number of informants that use a particular plant for a specific purpose, and $UR_s$ is the total number of use reports for the species.
+
+
+## Fidelity Level (FL) per species
+- **Function**
+
+```{r eval=FALSE}
+ethnobotanyR::FLs(ethnobotany_cat)
+```
+
+Divide FLs by 100 to get the percent FL, as it is reported in some studies.
+
+
+# Visualize ethnobotanyR results
+## Radial plots
+```{r eval=FALSE}
+URs_plot <- ethnobotanyR::Radial_plot(ethnobotany_cat, ethnobotanyR::URs)
+#> Scale for 'y' is already present. Adding another scale for 'y', which will
+#> replace the existing scale.
+
+NUs_plot <- ethnobotanyR::Radial_plot(ethnobotany_cat, ethnobotanyR::NUs)
+#> Scale for 'y' is already present. Adding another scale for 'y', which will
+#> replace the existing scale.
+
+FCs_plot <- ethnobotanyR::Radial_plot(ethnobotany_cat, ethnobotanyR::FCs)
+#> Scale for 'y' is already present. Adding another scale for 'y', which will
+#> replace the existing scale.
+
+CIs_plot <- ethnobotanyR::Radial_plot(ethnobotany_cat, ethnobotanyR::CIs)
+#> Scale for 'y' is already present. Adding another scale for 'y', which will
+#> replace the existing scale.
+
+cowplot::plot_grid(URs_plot, NUs_plot, FCs_plot, CIs_plot, 
+    labels = c('URs', 'NUs', 'FCs', 'CIs'), 
+    nrow = 2, 
+    align="hv",
+    label_size = 12)
+```
+
+## Chord diagrams
+```{r eval=FALSE}
+Chord_sp <- ethnobotanyR::ethnoChord(ethnobotany_cat, by = "sp_name")
+```
+
+
+```{r eval=FALSE}
+Chord_informant <- ethnobotanyR::ethnoChord(ethnobotany_cat, by = "informant")
+```
+
+## Flow diagrams
+```{r eval=FALSE}
+ethnobotanyR::ethno_alluvial(ethnobotany_cat)
+```
+
+Labels for *use*, *species* and *Expert* 
+
+```{r eval=FALSE}
+# correct internal assignment for stat = "stratum" 
+  StatStratum <- ggalluvial::StatStratum
+
+ggalu<-ethnobotanyR::ethno_alluvial(ethnobotany_cat, alpha = 0.2) + 
+  ggplot2::theme(legend.position = "none") +  
+             ggplot2::geom_label(stat = "stratum", 
+                      ggplot2::aes(label = ggplot2::after_stat(stratum)))
+plot(ggalu)
+```
+
+# bayesian methods
+## Confidence in responses
+```{r eval=FALSE}
+library(dplyr)
+sp_an_mu_data <- ethnobotany_cat %>% filter(sp_name == "anona_muricata") 
+
+sp_an_mu_use <- ethno_boot(sp_an_mu_data$food, statistic = mean, n1 = 1000)
+
+sp_alc_cor_data <- ethnobotany_cat %>% filter(sp_name == "alchornea_cordifolia") 
+
+sp_alc_cor_use<- ethno_boot(sp_alc_cor_data$food , statistic = mean, n1 = 1000)
+```
+
+```{r eval=FALSE}
+quantile(sp_an_mu_use, c(0.05, 0.95))
+
+quantile(sp_alc_cor_use, c(0.05, 0.95))
+```
+
+
+```{r eval=FALSE}
+boot_data <- data.frame(sp_an_mu_use, sp_alc_cor_use)
+
+ethno_boot_melt <- reshape2::melt(boot_data)
+```
+
+
+```{r eval=FALSE}
+library(ggplot2)
+ggplot(ethno_boot_melt, aes(x = value, 
+                y = variable, fill = variable)) +
+                ggridges::geom_density_ridges() +
+                ggridges::theme_ridges() + 
+                theme(legend.position = "none") +
+                labs(y= "", x = "Example Bayesian bootstraps of food use category")
+```
+```{r eval=FALSE}
+ethno_an_mu <- dplyr::filter(ethnobotany_cat, sp_name == "anona_muricata")
+```
+
+
+```{r eval=FALSE}
+answers <- 2
+```
+
+
+```{r eval=FALSE}
+ethno_compet_an_mu <- dplyr::recode(ethno_an_mu$informant, 
+                                    aime = 0.9,rutho = 0.5,evan = 0.5,
+                                    konan = 0.9, lidie = 0.9, rosine = 0.5,
+                                    larrisa = 0.7,jean = 0.5, paul = 0.9, ib_chab = 0.9,
+                                    claud= 0.9, kouadio = 0.9)
+```
+
+
+
+                    
+```{r eval=FALSE}
+ethno_an_mu_bayes <- ethnobotanyR::ethno_bayes_consensus(ethno_an_mu, 
+                    answers = 2,
+                    #here we keep the default normal distribution with `prior = -1`
+                    prior_for_answers = ethno_compet_an_mu)
+```
+
+
+```{r eval=FALSE}
+heatmap(ethno_an_mu_bayes)
+```
+Here the ‘1’ and ‘2’ represent ‘use’ and ‘no use’ (y-axis)
+
+
+
+
+## Richer response data
+```{r eval=FALSE}
+set.seed(123) #make random number reproducible
+ethno_sp_a_rich <- data.frame(replicate(3,sample(0:10,20,rep=TRUE)))
+  names(ethno_sp_a_rich) <- 
+  gsub(x = names(ethno_sp_a_rich), 
+  pattern = "X", replacement = "Use_")  
+  ethno_sp_a_rich$informant <- sample(c('User_1', 'User_2'), 
+  20, replace=TRUE)
+  ethno_sp_a_rich$sp_name <- sample(c('sp_a'), 
+  20, replace=TRUE)
+```
+
+
+
+```{r eval=FALSE}
+ethno_compet_sp_a_rich <- 
+          dplyr::recode(ethno_sp_a_rich$informant,
+          User_1 = 0.9, User_2 = 0.5)
+```
+
+
+```{r eval=FALSE}
+ethno_sp_a_bayes <- ethnobotanyR::ethno_bayes_consensus(ethno_sp_a_rich,
+       answers = 10, 
+       prior_for_answers = ethno_compet_sp_a_rich, 
+       prior=-1) #keep a normal prior in this example with -1
+```
+
+
+```{r eval=FALSE}
+ethno_sp_a_bayes_melt <-  ethno_sp_a_bayes %>%
+  as.data.frame() %>%
+  reshape2::melt()
+
+#> No id variables; using all as measure variables
+```
+
+
+```{r eval=FALSE}
+ggplot2::ggplot(ethno_sp_a_bayes_melt, aes(x = value, 
+                y = variable, fill = variable)) +
+                ggridges::geom_density_ridges() +
+                ggridges::theme_ridges() + 
+                theme(legend.position = "none")+
+                labs(y= "", x = "Example ethno_bayes_consensus of use categories for sp_a")
+#> Picking joint bandwidth of 0.00853
+```
+
+# Closing
+## Summary
+1. Install Rand Rstudio
+2. Importing the dataset
+3. Run functions
+4. Use Ethnobotary R
+5. Exploratory Data Analysis
+
+## Thank you for your coming!
